@@ -4,7 +4,7 @@
  * @Author: liujy
  * @Date: 2020-10-14 11:12:39
  * @LastEditors: liujy
- * @LastEditTime: 2020-10-14 14:21:18
+ * @LastEditTime: 2020-10-16 13:20:02
 -->
 <template>
   <v-app>
@@ -42,22 +42,49 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <!-- <input type="text" v-model="value" /> -->
+      <div id="test-markdown-view">123123</div>
+
+      <markdown :onchange="contentOnChange" :initData="data" v-model="data" />
+      <div>{{ data }}</div>
     </v-main>
   </v-app>
 </template>
 
 <script>
-  import HelloWorld from "./components/HelloWorld";
-
+  // import HelloWorld from "./components/HelloWorld";
+  // import mavonEditor from "mavon-editor";
+  // import "mavon-editor/dist/css/index.css";
+  import markdown from "./components/MarkdownEditor";
+  // use
   export default {
     name: "App",
     components: {
-      HelloWorld,
+      // "mavon-editor": mavonEditor.mavonEditor,
+      markdown,
     },
 
     data: () => ({
-      //
+      value: "123",
+      data: "123123213",
     }),
+    watch: {
+      data: function (newval) {
+        console.log(newval);
+      },
+    },
+    methods: {
+      contentOnChange: function (e) {
+        console.log(e);
+      },
+    },
   };
 </script>
+<style scoped>
+  #editor {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
